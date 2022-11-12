@@ -12,6 +12,11 @@ describe('Testing Gameboard object', () => {
 
   test.only('Unable to place ship (recieves false)', () => {
     const playerBoard = Gameboard();
-    expect(playerBoard.placeShip(carrier, [7, 2], 'right')).toBeTruthy();
+    expect(playerBoard.placeShip(carrier, [7, 2], 'right')).toBeFalsy();
   });
+
+  // test.only('Unable to place ship (recieves false)', () => {
+  //   const playerBoard = Gameboard();
+  //   expect(playerBoard.placeShip(carrier, [7, 2], 'right')).toBeTruthy();
+  // });
 });
