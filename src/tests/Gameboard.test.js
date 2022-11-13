@@ -48,4 +48,21 @@ describe('Testing Gameboard object', () => {
     expect(playerBoard.receiveAttack([9, 8])).toBeTruthy();
     expect(playerBoard.receiveAttack([5, 1])).toBeTruthy();
   });
+
+  test.only('Test isGameOver method', () => {
+    const playerBoard = Gameboard();
+    const submarine = Ship('Submarine', 3);
+    const destroyer = Ship('Destroyer', 2);
+    playerBoard.placeShip(submarine, [4, 1], 'right');
+    playerBoard.placeShip(destroyer, [9, 0], 'down');
+    expect(playerBoard.isGameOver()).toBeFalsy();
+    playerBoard.receiveAttack([4, 1]);
+    playerBoard.receiveAttack([5, 1]);
+    playerBoard.receiveAttack([6, 1]);
+    expect(playerBoard.isGameOver()).toBeFalsy();
+    playerBoard.receiveAttack([9, 1]);
+    expect(playerBoard.isGameOver()).toBeFalsy();
+    playerBoard.receiveAttack([9, 0]);
+    expect(playerBoard.isGameOver()).toBeTruthy();
+  });
 });
