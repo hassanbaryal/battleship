@@ -27,4 +27,25 @@ describe('Testing Gameboard object', () => {
     playerBoard.placeShip(carrier, [1, 2], 'down');
     expect(playerBoard.placeShip(carrierTwo, [7, 2], 'down')).toBeTruthy();
   });
+
+  test.only('Fire shots', () => {
+    const playerBoard = Gameboard();
+    const carrierThree = Ship('Carrier', 5);
+    const battleShip = Ship('Battleship', 4);
+    const cruiser = Ship('Cruiser', 3);
+    const submarine = Ship('Submarine', 3);
+    const destroyer = Ship('Destroyer', 2);
+    playerBoard.placeShip(carrierThree, [1, 2], 'down');
+    playerBoard.placeShip(battleShip, [6, 8], 'right');
+    playerBoard.placeShip(cruiser, [3, 7], 'down');
+    playerBoard.placeShip(submarine, [4, 1], 'right');
+    playerBoard.placeShip(destroyer, [9, 0], 'down');
+    expect(playerBoard.receiveAttack([0, 0])).toBeFalsy();
+    expect(playerBoard.receiveAttack([8, 0])).toBeFalsy();
+    expect(playerBoard.receiveAttack([8, 7])).toBeFalsy();
+    expect(playerBoard.receiveAttack([1, 7])).toBeFalsy();
+    expect(playerBoard.receiveAttack([1, 2])).toBeTruthy();
+    expect(playerBoard.receiveAttack([9, 8])).toBeTruthy();
+    expect(playerBoard.receiveAttack([5, 1])).toBeTruthy();
+  });
 });
