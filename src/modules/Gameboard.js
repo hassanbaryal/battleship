@@ -59,6 +59,7 @@ const Gameboard = () => {
       missedShotsCoords.push(coords);
       return false;
     }
+    map[y][x].hit();
     return true;
   };
 
