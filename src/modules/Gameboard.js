@@ -1,4 +1,5 @@
 const Gameboard = () => {
+  const missedShotsCoords = [];
   const shipsPlaced = [];
   const map = (() => {
     const array = [];
@@ -32,13 +33,13 @@ const Gameboard = () => {
     // For loop checks if cells are not occupied and
     // are not outside map
     for (let i = 0; i < ship.getLength(); i += 1) {
+      // If coordinates exceed map limits, return false
+      if (x > 9 || y > 9) return false;
       // If current cell is occupied, return false
       if (!checkCell([x, y])) return false;
       allCoordinates.push([x, y]);
       if (orientation === 'right') x += 1;
       else y += 1;
-      // If coordinates exceed map limits, return false
-      if (x > 9 || y > 9) return false;
     }
     // Remove previous location of ship, if ship is already placed
     if (shipsPlaced.includes(ship)) removeShipFromMap(ship);
@@ -52,7 +53,16 @@ const Gameboard = () => {
     return true;
   };
 
-  return { placeShip };
+  const receiveAttack = (coords) => {
+    const [x, y] = coords;
+    if (map[y][x] === null) {
+      missedShotsCoords.push(coords);
+      return false;
+    }
+    return true;
+  };
+
+  return { placeShip, receiveAttack };
 };
 
 export default Gameboard;
