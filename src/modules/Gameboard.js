@@ -63,7 +63,14 @@ const Gameboard = () => {
     return true;
   };
 
-  return { placeShip, receiveAttack };
+  const isGameOver = () => {
+    const foundShipAlive = shipsPlaced.find((ship) => !ship.isSunk());
+
+    if (foundShipAlive) return false;
+    return true;
+  };
+
+  return { placeShip, receiveAttack, isGameOver };
 };
 
 export default Gameboard;
