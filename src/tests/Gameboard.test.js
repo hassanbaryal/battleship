@@ -2,7 +2,7 @@
 import Gameboard from '../modules/Gameboard';
 import Ship from '../modules/Ship';
 
-describe('Testing Gameboard object', () => {
+describe.skip('Testing Gameboard object', () => {
   const carrier = Ship('Carrier', 5);
   const carrierTwo = Ship('Destroyer', 5);
   test.only('Places ship (recieves true)', () => {
