@@ -40,13 +40,14 @@ describe('Testing Gameboard object', () => {
     playerBoard.placeShip(cruiser, [3, 7], 'down');
     playerBoard.placeShip(submarine, [4, 1], 'right');
     playerBoard.placeShip(destroyer, [9, 0], 'down');
-    expect(playerBoard.receiveAttack([0, 0])).toBeFalsy();
-    expect(playerBoard.receiveAttack([8, 0])).toBeFalsy();
-    expect(playerBoard.receiveAttack([8, 7])).toBeFalsy();
-    expect(playerBoard.receiveAttack([1, 7])).toBeFalsy();
-    expect(playerBoard.receiveAttack([1, 2])).toBeTruthy();
-    expect(playerBoard.receiveAttack([9, 8])).toBeTruthy();
-    expect(playerBoard.receiveAttack([5, 1])).toBeTruthy();
+    expect(playerBoard.receiveAttack([0, 0])).toMatch('miss');
+    expect(playerBoard.receiveAttack([8, 0])).toMatch('miss');
+    expect(playerBoard.receiveAttack([8, 7])).toMatch('miss');
+    expect(playerBoard.receiveAttack([1, 7])).toMatch('miss');
+    expect(playerBoard.receiveAttack([1, 2])).toMatch('hit');
+    expect(playerBoard.receiveAttack([9, 8])).toMatch('hit');
+    expect(playerBoard.receiveAttack([5, 1])).toMatch('hit');
+    expect(playerBoard.receiveAttack([5, 1])).toBeFalsy();
   });
 
   test.only('Test isGameOver method', () => {
