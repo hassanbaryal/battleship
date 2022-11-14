@@ -1,5 +1,5 @@
 const Gameboard = () => {
-  const missedShotsCoords = [];
+  const allShotCells = [];
   const shipsPlaced = [];
   const map = (() => {
     const array = [];
@@ -55,12 +55,16 @@ const Gameboard = () => {
 
   const receiveAttack = (coords) => {
     const [x, y] = coords;
+    // if cell has already been shot at
+    for (let i = 0; i < allShotCells.length; i += 1) {
+      if (allShotCells[i].includes(x) && allShotCells[i].includes(y)) return false;
+    }
+    allShotCells.push(coords);
     if (map[y][x] === null) {
-      missedShotsCoords.push(coords);
-      return false;
+      return 'miss';
     }
     map[y][x].hit();
-    return true;
+    return 'hit';
   };
 
   const isGameOver = () => {
