@@ -22,4 +22,47 @@
     align-items: center;
     gap: 3rem;
   }
+
+  /* PLAYER SETUP */
+  main .player-setup {
+    /* height: 100%;
+    width: 100%;
+  
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center; */
+  }
+  
+  .setup-msg {
+    font-size: 1.5rem;
+  }
+  
+  .player-setup input {
+    height: 2rem;
+    width: 12rem;
+    padding: 4px;
+  }
+  
+  .player-setup .setup-player-ships {
+    display: flex;
+    flex-flow: column;
+    gap: 1rem;
+  }
+
+  .player-setup .ship-selector {
+    display: flex;
+  }
+  
+  .ship-selector button {
+    width: 5rem;
+  }
+  
+  .setup-player-ships .board {
+    height: 80vw;
+    aspect-ratio: 1/1;
+    border: 2px solid var(--secondary-colour);
+  }
+
+
 }

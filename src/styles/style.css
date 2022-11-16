@@ -65,3 +65,49 @@ header .page-title {
 main {
   height: 100%;
 }
+
+/* PLAYER SETUP */
+
+main .player-setup {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.setup-msg {
+  font-size: 1.5rem;
+}
+
+.player-setup input {
+  height: 2rem;
+  width: 12rem;
+  padding: 4px;
+  border: 2px solid var(--secondary-colour);
+  background-color: var(--primary-colour);
+}
+
+.player-setup .ship-selector {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.ship-selector button {
+  
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  
+}
+
+.cell {
+  border: 1px solid var(--secondary-colour);
+}
