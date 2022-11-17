@@ -9,7 +9,7 @@ const showErrorMsg = (form, newMsg) => {
     msg.textContent = `${temp}`;
     msg.classList.toggle('error');
     submitBtn.disabled = false;
-  }, 1000);
+  }, 4000);
 };
 
 const checkPlayerSetupValidity = (form, shipsArray) => {
@@ -18,13 +18,13 @@ const checkPlayerSetupValidity = (form, shipsArray) => {
     for (const ship of shipsArray) {
       if (!ship.getCoord()) {
         // say that you have to place all ships
-        showErrorMsg(form, 'You have not placed your ships, Captain!');
+        showErrorMsg(form, 'Ship(s) Missing!');
         return false;
       }
     }
   } else {
     // say that yuo have to input a name
-    showErrorMsg(form, 'Please input your name, Captain!');
+    showErrorMsg(form, 'Name Missing!');
     return false;
   }
 
