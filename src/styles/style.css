@@ -92,13 +92,12 @@ main .player-setup {
 
 .player-setup .ship-selector {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 3rem;
 }
 
-.ship-selector button {
-  
+.current-ship-selected.placed {
+  color: green;
 }
 
 .board {

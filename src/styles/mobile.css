@@ -25,13 +25,13 @@
 
   /* PLAYER SETUP */
   main .player-setup {
-    /* height: 100%;
+    height: 100%;
     width: 100%;
   
     display: flex;
     flex-flow: column;
     justify-content: space-around;
-    align-items: center; */
+    align-items: center;
   }
   
   .setup-msg {
@@ -50,18 +50,34 @@
     gap: 1rem;
   }
 
-  .player-setup .ship-selector {
+  .player-setup .selector {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   
-  .ship-selector button {
+  .selector button {
     width: 5rem;
+  }
+
+  .current-ship-selected.placed {
+    color: green;
   }
   
   .setup-player-ships .board {
     height: 80vw;
     aspect-ratio: 1/1;
     border: 2px solid var(--secondary-colour);
+  }
+
+  .board {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+  }
+  
+  .cell {
+    border: 1px solid var(--secondary-colour);
   }
 
 
