@@ -20,11 +20,52 @@ const createShips = () => {
 
 const changeShipSelector = (shipsArray, index, page) => {
   const currentShip = page.querySelector('.current-ship-selected');
+  // Changes text of ship selector
   currentShip.textContent = shipsArray[index].getName();
-  if (shipsArray.getCoord()) {
+  // Adds the .placed class to ship selector to indicated to user if ship has been placed on board
+  if (shipsArray[index].getCoord()) {
     if (!currentShip.classList.contains('placed')) currentShip.classList.toggle('placed');
   } else if (currentShip.classList.contains('placed')) {
     currentShip.classList.toggle('placed');
+  }
+};
+
+const addShipToBoardDOM = (ship, page) => {
+  const boardDom = page.querySelector('.board');
+  if (!boardDom.classList.contains(`${ship.getName()}`)) {
+    boardDom.classList.toggle(`${ship.getName()}`);
+  } else {
+    const existingCells = page.querySelectorAll(
+      `[data-ship="${ship.getName()}"]`,
+    );
+    existingCells.forEach((element) => {
+      element.classList.toggle('ship-placed');
+      element.removeAttribute('data-ship');
+    });
+  }
+
+  let [x, y] = ship.getCoord();
+  const orientation = ship.getOrientation();
+  let currCell;
+  for (let i = 0; i < ship.getLength(); i += 1) {
+    currCell = page.querySelector(`[data-x="${x}"][data-y="${y}"]`);
+    currCell.classList.toggle('ship-placed');
+    currCell.setAttribute('data-ship', `${ship.getName()}`);
+    if (orientation === 'right') x += 1;
+    else y += 1;
+  }
+};
+
+const addShipToBoard = (gameBoard, ship, cell, page) => {
+  const [x, y] = [Number(cell.dataset.x), Number(cell.dataset.y)];
+  const orientation = page
+    .querySelector('.current-orientation-selected')
+    .textContent.toLowerCase();
+
+  if (gameBoard.placeShip(ship, [x, y], orientation)) {
+    ship.setCoord([x, y]);
+    ship.setOrientation(orientation);
+    addShipToBoardDOM(ship, page);
   }
 };
 
@@ -65,10 +106,14 @@ const addFunctionality = (page, numPlayers, players) => {
   });
 
   // Add functionality to ship selector, board, and submit btn
-
+  // When cell is clicked, take current ship, using shipsArray[index], and add it to the gameboard. if adding to game board is successfull, modify map to show this by creating a function in map.js. This function is similar to gameboard place ship function, where it will place the current ship on the boardDOM.
+  // Things to consider:
+  // -if user wants to place ship in a different place, have to remove the ship from dom. Have to remove correct ship
+  // Maybe add ship name to classlist of board?
   page.querySelector('.board').addEventListener(('click'), (e) => {
     const cell = e.target.closest('.cell');
     if (!cell) return;
+    addShipToBoard(newGameBoard, shipsArray[index], cell, page);
   });
 };
 
