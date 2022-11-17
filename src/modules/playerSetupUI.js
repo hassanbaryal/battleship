@@ -34,8 +34,8 @@ const addFunctionality = (page, numPlayers, players) => {
   let index = 0;
 
   // Adding functionality to ship selector
-  const prevBtn = page.querySelector('.prev-btn');
-  const nextBtn = page.querySelector('.next-btn');
+  const prevBtn = page.querySelector('.ship-selector .prev-btn');
+  const nextBtn = page.querySelector('.ship-selector .next-btn');
 
   prevBtn.addEventListener('click', () => {
     if (index === 0) index = shipsArray.length - 1;
@@ -48,7 +48,28 @@ const addFunctionality = (page, numPlayers, players) => {
     else index += 1;
     changeShipSelector(shipsArray, index, page);
   });
+
+  // Adding functionality to orientation selector
+  const prevBtnOrientation = page.querySelector('.orientation-selector .prev-btn');
+  const currOrientation = page.querySelector('.current-orientation-selected');
+  const nextBtnOrientation = page.querySelector('.orientation-selector .next-btn');
+
+  prevBtnOrientation.addEventListener('click', () => {
+    if (currOrientation.textContent === 'Right') currOrientation.textContent = 'Down';
+    else currOrientation.textContent = 'Right';
+  });
+
+  nextBtnOrientation.addEventListener('click', () => {
+    if (currOrientation.textContent === 'Right') currOrientation.textContent = 'Down';
+    else currOrientation.textContent = 'Right';
+  });
+
   // Add functionality to ship selector, board, and submit btn
+
+  page.querySelector('.board').addEventListener(('click'), (e) => {
+    const cell = e.target.closest('.cell');
+    if (!cell) return;
+  });
 };
 
 const buildPlayerSetupPage = (numPlayers = 1, players = []) => {
@@ -72,7 +93,7 @@ const buildPlayerSetupPage = (numPlayers = 1, players = []) => {
 
           <div class="selector orientation-selector">
             <button type="button" class="prev-btn">&#60;</button>
-            <div class="current-ship-selected">Right</div>
+            <div class="current-orientation-selected">Right</div>
             <button type="button" class="next-btn">&#62;</button>
           </div>
         </div>
