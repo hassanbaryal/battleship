@@ -18,9 +18,14 @@ const createShips = () => {
   return [carrier, battleShip, cruiser, submarine, destroyer];
 };
 
-const changeShipSelector = (shipsArray, index, currentShip) => {
+const changeShipSelector = (shipsArray, index, page) => {
+  const currentShip = page.querySelector('.current-ship-selected');
   currentShip.textContent = shipsArray[index].getName();
-  // if (shipsArray.getCoord())
+  if (shipsArray.getCoord()) {
+    if (!currentShip.classList.contains('placed')) currentShip.classList.toggle('placed');
+  } else if (currentShip.classList.contains('placed')) {
+    currentShip.classList.toggle('placed');
+  }
 };
 
 const addFunctionality = (page, numPlayers, players) => {
@@ -30,21 +35,18 @@ const addFunctionality = (page, numPlayers, players) => {
 
   // Adding functionality to ship selector
   const prevBtn = page.querySelector('.prev-btn');
-  const currentShip = page.querySelector('.current-ship-selected');
   const nextBtn = page.querySelector('.next-btn');
-
-  currentShip.textContent = shipsArray[index].getName();
 
   prevBtn.addEventListener('click', () => {
     if (index === 0) index = shipsArray.length - 1;
     else index -= 1;
-    currentShip.textContent = shipsArray[index].getName();
+    changeShipSelector(shipsArray, index, page);
   });
 
   nextBtn.addEventListener('click', () => {
     if (index === shipsArray.length - 1) index = 0;
     else index += 1;
-    currentShip.textContent = shipsArray[index].getName();
+    changeShipSelector(shipsArray, index, page);
   });
   // Add functionality to ship selector, board, and submit btn
 };
@@ -64,7 +66,7 @@ const buildPlayerSetupPage = (numPlayers = 1, players = []) => {
         <div class="setup-player-ships">
           <div class="selector ship-selector">
             <button type="button" class="prev-btn">&#60;</button>
-            <div class="current-ship-selected"></div>
+            <div class="current-ship-selected">Carrier</div>
             <button type="button" class="next-btn">&#62;</button>
           </div>
 
