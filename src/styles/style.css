@@ -110,3 +110,7 @@ main .player-setup {
 .cell {
   border: 1px solid var(--secondary-colour);
 }
+
+.player-setup .cell.ship-placed {
+  background-color: var(--secondary-colour);
+}
