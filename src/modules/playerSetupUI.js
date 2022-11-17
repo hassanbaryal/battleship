@@ -9,6 +9,46 @@ const elementFromHtml = (html) => {
   return template.content.firstElementChild;
 };
 
+const createShips = () => {
+  const carrier = Ship('Carrier', 5);
+  const battleShip = Ship('Battleship', 4);
+  const cruiser = Ship('Cruiser', 3);
+  const submarine = Ship('Submarine', 3);
+  const destroyer = Ship('Destroyer', 2);
+  return [carrier, battleShip, cruiser, submarine, destroyer];
+};
+
+const changeShipSelector = (shipsArray, index, currentShip) => {
+  currentShip.textContent = shipsArray[index].getName();
+  // if (shipsArray.getCoord())
+};
+
+const addFunctionality = (page, numPlayers, players) => {
+  const shipsArray = createShips();
+  const newGameBoard = Gameboard();
+  let index = 0;
+
+  // Adding functionality to ship selector
+  const prevBtn = page.querySelector('.prev-btn');
+  const currentShip = page.querySelector('.current-ship-selected');
+  const nextBtn = page.querySelector('.next-btn');
+
+  currentShip.textContent = shipsArray[index].getName();
+
+  prevBtn.addEventListener('click', () => {
+    if (index === 0) index = shipsArray.length - 1;
+    else index -= 1;
+    currentShip.textContent = shipsArray[index].getName();
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if (index === shipsArray.length - 1) index = 0;
+    else index += 1;
+    currentShip.textContent = shipsArray[index].getName();
+  });
+  // Add functionality to ship selector, board, and submit btn
+};
+
 const buildPlayerSetupPage = (numPlayers = 1, players = []) => {
   let playerText = 'One';
   if (players.length === 1) {
@@ -22,9 +62,15 @@ const buildPlayerSetupPage = (numPlayers = 1, players = []) => {
 
 
         <div class="setup-player-ships">
-          <div class="ship-selector">
+          <div class="selector ship-selector">
             <button type="button" class="prev-btn">&#60;</button>
             <div class="current-ship-selected"></div>
+            <button type="button" class="next-btn">&#62;</button>
+          </div>
+
+          <div class="selector orientation-selector">
+            <button type="button" class="prev-btn">&#60;</button>
+            <div class="current-ship-selected">Right</div>
             <button type="button" class="next-btn">&#62;</button>
           </div>
         </div>
@@ -34,23 +80,11 @@ const buildPlayerSetupPage = (numPlayers = 1, players = []) => {
   `);
 
   const [board, cells] = createMap();
-  page.querySelector('.ship-selector').after(board);
+  page.querySelector('.orientation-selector').after(board);
+
+  addFunctionality(page, numPlayers, players);
 
   document.querySelector('main').appendChild(page);
-};
-
-const createShips = () => {
-  const carrier = Ship('Carrier', 5);
-  const battleShip = Ship('Battleship', 4);
-  const cruiser = Ship('Cruiser', 3);
-  const submarine = Ship('Submarine', 3);
-  const destroyer = Ship('Destroyer', 2);
-  return [carrier, battleShip, cruiser, submarine, destroyer];
-};
-
-const addFunctionality = (page, numPlayers, players) => {
-  const shipsArray = createShips();
-  const newGameBoard = Gameboard();
 };
 
 export default buildPlayerSetupPage;
