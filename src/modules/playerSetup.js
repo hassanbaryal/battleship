@@ -1,4 +1,5 @@
 import createMap from './map';
+import checkPlayerSetupValidity from './playerSetupValidation';
 import Ship from './Ship';
 import Gameboard from './Gameboard';
 import { Player, Computer } from './Player';
@@ -115,6 +116,14 @@ const addFunctionality = (page, numPlayers, players) => {
     if (!cell) return;
     addShipToBoard(newGameBoard, shipsArray[index], cell, page);
   });
+
+  // Add functionality to submit button
+  const submitBtn = page.querySelector('.submit-btn');
+
+  submitBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    checkPlayerSetupValidity(page, shipsArray);
+  });
 };
 
 const buildPlayerSetupPage = (numPlayers = 1, players = []) => {
@@ -143,7 +152,7 @@ const buildPlayerSetupPage = (numPlayers = 1, players = []) => {
           </div>
         </div>
 
-        <button type="submit">Submit</button>
+        <button type="submit" class="submit-btn">Submit</button>
     </form>
   `);
 
