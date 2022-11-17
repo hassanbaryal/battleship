@@ -1,6 +1,6 @@
 const showErrorMsg = (form, newMsg) => {
   const msg = form.querySelector('.setup-msg');
-  const submitBtn = form.querySelector('.player-setup button');
+  const submitBtn = form.querySelector('.submit-btn');
   const temp = msg.textContent;
   msg.textContent = newMsg;
   msg.classList.toggle('error');
