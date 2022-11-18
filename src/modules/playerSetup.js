@@ -1,4 +1,5 @@
 import createMap from './map';
+import removeMainContent from './removeMainContent';
 import checkPlayerSetupValidity from './playerSetupValidation';
 import Ship from './Ship';
 import Gameboard from './Gameboard';
@@ -70,6 +71,24 @@ const addShipToBoard = (gameBoard, ship, cell, page) => {
   }
 };
 
+// This function executes when player setup form is successfully submitted.
+// The function constructs the player(s) and calls for the next 'event' to occur
+// (either start player setup for player two, or start game)
+const completeSetup = (gameBoard, form, numPlayers, players) => {
+  const name = form.querySelector('#name').value;
+  const player = Player(name, gameBoard);
+  players.push(player);
+  removeMainContent();
+  if (numPlayers === 2 && players.length === 1) {
+    // eslint-disable-next-line no-use-before-define
+    buildPlayerSetupPage(numPlayers, players);
+  } else if (numPlayers === 2 && players.length === 2) {
+    // call function to start 2 player vs player game
+  } else {
+    // create computer. call function to start player vs computer game
+  }
+};
+
 const addFunctionality = (page, numPlayers, players) => {
   const shipsArray = createShips();
   const newGameBoard = Gameboard();
@@ -111,7 +130,7 @@ const addFunctionality = (page, numPlayers, players) => {
   // Things to consider:
   // -if user wants to place ship in a different place, have to remove the ship from dom. Have to remove correct ship
   // Maybe add ship name to classlist of board?
-  page.querySelector('.board').addEventListener(('click'), (e) => {
+  page.querySelector('.board').addEventListener('click', (e) => {
     const cell = e.target.closest('.cell');
     if (!cell) return;
     addShipToBoard(newGameBoard, shipsArray[index], cell, page);
@@ -122,7 +141,9 @@ const addFunctionality = (page, numPlayers, players) => {
 
   submitBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    checkPlayerSetupValidity(page, shipsArray);
+    if (checkPlayerSetupValidity(page, shipsArray)) {
+      completeSetup(newGameBoard, page, numPlayers, players);
+    }
   });
 };
 
