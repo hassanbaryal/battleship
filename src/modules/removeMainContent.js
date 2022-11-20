@@ -3,4 +3,10 @@ const removeMainContent = () => {
   main.textContent = '';
 };
 
-export default removeMainContent;
+const elementFromHtml = (html) => {
+  const template = document.createElement('template');
+  template.innerHTML = html.trim();
+  return template.content.firstElementChild;
+};
+
+export { removeMainContent, elementFromHtml };
