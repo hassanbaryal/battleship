@@ -1,4 +1,4 @@
-import createMap from './map';
+import { createMap } from './map';
 import { removeMainContent, elementFromHtml } from './domFunctions';
 import checkPlayerSetupValidity from './playerSetupValidation';
 import Ship from './Ship';
