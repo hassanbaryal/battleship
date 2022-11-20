@@ -20,4 +20,24 @@ const createMap = () => {
   return [board, cellsArray];
 };
 
-export default createMap;
+const map = () => {
+  const [hiddenMap, hiddenCells] = createMap();
+  const [visibleMap, visibleCells] = createMap();
+
+  const getHiddenMap = () => hiddenMap;
+
+  const getVisibleMap = () => visibleMap;
+
+  const attack = (coords, hitStatus) => {
+    const [x, y] = coords;
+    if (hitStatus === 'hit') {
+      hiddenCells[y][x].classList.toggle('hit');
+      visibleCells[y][x].classList.toggle('hit');
+    } else {
+      hiddenCells[y][x].classList.toggle('miss');
+      visibleCells[y][x].classList.toggle('miss');
+    }
+  };
+};
+
+export { createMap, map };
