@@ -11,10 +11,29 @@ const Player = (playerName, myBoard) => {
   return { getName, getBoard, attack };
 };
 
-const Computer = (myBoard) => {
+const Computer = (myBoard, ships) => {
   const possibleNames = ['Black Beard', 'Doflamingo', 'Kaido'];
   const name = possibleNames[Math.floor(Math.random() * possibleNames.length)];
   const board = myBoard;
+
+  // Setup own board
+  (() => {
+    const orientations = ['right', 'down'];
+    for (let i = 0; i < ships.length; i += 1) {
+      let placed = false;
+      while (!placed) {
+        const randomCoord = [Math.floor(Math.random * 10), Math.floor(Math.random * 10)];
+        const orientation = orientations[Math.floor(Math.random * 2)];
+        // If ship place successful, update ship coords and orientation
+        // exit while loop to move onto next ship
+        if (board.placeShip(ships[i], randomCoord, orientation)) {
+          ships[i].setCoord(randomCoord);
+          ships[i].setOrientation(orientation);
+          placed = true;
+        }
+      }
+    }
+  })();
 
   const getName = () => name;
 
