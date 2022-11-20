@@ -86,6 +86,7 @@ const completeSetup = (gameBoard, form, numPlayers, players) => {
     // call function to start 2 player vs player game
   } else {
     // create computer. call function to start player vs computer game
+    const newComputer = Computer(Gameboard(), createShips());
   }
 };
 
@@ -125,11 +126,7 @@ const addFunctionality = (page, numPlayers, players) => {
     else currOrientation.textContent = 'Right';
   });
 
-  // Add functionality to ship selector, board, and submit btn
-  // When cell is clicked, take current ship, using shipsArray[index], and add it to the gameboard. if adding to game board is successfull, modify map to show this by creating a function in map.js. This function is similar to gameboard place ship function, where it will place the current ship on the boardDOM.
-  // Things to consider:
-  // -if user wants to place ship in a different place, have to remove the ship from dom. Have to remove correct ship
-  // Maybe add ship name to classlist of board?
+  // Add functionality to board
   page.querySelector('.board').addEventListener('click', (e) => {
     const cell = e.target.closest('.cell');
     if (!cell) return;
