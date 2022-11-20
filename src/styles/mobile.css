@@ -67,7 +67,6 @@
   .setup-player-ships .board {
     height: 80vw;
     aspect-ratio: 1/1;
-    border: 2px solid var(--secondary-colour);
   }
 
   .board {
@@ -80,5 +79,53 @@
     border: 1px solid var(--secondary-colour);
   }
 
+  /* ONE PLAYER GAME */
 
+  .one-player-game-container {
+    height: 100%;
+    width: 100%;
+  
+    flex-flow: column;
+    justify-content: flex-start;
+  }
+
+  .game-update-msg {
+    height: 4rem;
+  }
+
+  .one-player-game-container .game-container {
+    flex-grow: 1;
+    width: 100%;
+
+    flex-flow: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .board-container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .board-container .board-title {
+    width: fit-content;
+  }
+
+  .board-container.friendly-waters .board {
+    height: 40vw;
+  }
+
+  .board-title.enemy-waters {
+    font-size: 1.5rem;
+  }
+
+  .board-container.enemy-waters .board {
+    height: 70vw;
+  }
+
+  .deactivate {
+    pointer-events: none;
+  }
 }
