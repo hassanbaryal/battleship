@@ -1,15 +1,9 @@
 import createMap from './map';
-import removeMainContent from './removeMainContent';
+import { removeMainContent, elementFromHtml } from './domFunctions';
 import checkPlayerSetupValidity from './playerSetupValidation';
 import Ship from './Ship';
 import Gameboard from './Gameboard';
 import { Player, Computer } from './Player';
-
-const elementFromHtml = (html) => {
-  const template = document.createElement('template');
-  template.innerHTML = html.trim();
-  return template.content.firstElementChild;
-};
 
 const createShips = () => {
   const carrier = Ship('Carrier', 5);
