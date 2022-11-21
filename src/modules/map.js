@@ -38,6 +38,8 @@ const map = () => {
       visibleCells[y][x].classList.toggle('miss');
     }
   };
+
+  return { getHiddenMap, getVisibleMap, attack };
 };
 
 export { createMap, map };
