@@ -23,6 +23,18 @@
     gap: 3rem;
   }
 
+  /* MODAL */
+  .modal {
+    height: 50vh;
+    width: 75vw;
+    gap: 2rem;
+  }
+
+  .modal .modal-msg {
+    width: 70%;
+    font-size: 2rem;
+  }
+
   /* PLAYER SETUP */
   main .player-setup {
     height: 100%;

@@ -30,6 +30,7 @@ html {
 body {
   height: 100%;
   background-color: var(--primary-colour);
+  position: relative;
   
   display: flex;
   flex-flow: column;
@@ -64,6 +65,42 @@ header .page-title {
 
 main {
   height: 100%;
+}
+
+/* MODAL */
+
+.modal-popup {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  opacity: 1;
+  transition: 250ms opacity ease-in-out;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-popup.invisible {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal {
+  background-color: var(--primary-colour);
+  border: 2px solid var(--secondary-colour);
+  border-radius: 15px;
+
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal .modal-msg {
+  text-align: center;
 }
 
 /* PLAYER SETUP */
