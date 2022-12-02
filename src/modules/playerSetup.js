@@ -1,5 +1,6 @@
 import { createMap } from './map';
 import { removeMainContent, elementFromHtml } from './domFunctions';
+import buildStartGamePage from './startGame';
 import checkPlayerSetupValidity from './playerSetupValidation';
 import Ship from './Ship';
 import Gameboard from './Gameboard';
@@ -81,6 +82,8 @@ const completeSetup = (gameBoard, form, numPlayers, players) => {
   } else {
     // create computer. call function to start player vs computer game
     const newComputer = Computer(Gameboard(), createShips());
+    players.push(newComputer);
+    buildStartGamePage(numPlayers, players);
   }
 };
 
