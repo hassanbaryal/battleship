@@ -20,9 +20,23 @@ const createMap = () => {
   return [board, cellsArray];
 };
 
-const map = () => {
+const map = (player) => {
   const [hiddenMap, hiddenCells] = createMap();
   const [visibleMap, visibleCells] = createMap();
+
+  // Add ships to visible map
+  (() => {
+    const ships = player.getBoard().getShips();
+    for (let i = 0; i < ships.length; i += 1) {
+      let [x, y] = ships[i].getCoord();
+      const shipOrient = ships[i].getOrientation();
+      for (let j = 0; j < ships[i].getLength(); j += 1) {
+        visibleCells[y][x].classList.toggle('ship-placed');
+        if (shipOrient === 'right') x += 1;
+        else y += 1;
+      }
+    }
+  })();
 
   const getHiddenMap = () => hiddenMap;
 
