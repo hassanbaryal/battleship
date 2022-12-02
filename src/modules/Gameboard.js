@@ -67,6 +67,8 @@ const Gameboard = () => {
     return 'hit';
   };
 
+  const getShips = () => shipsPlaced;
+
   const isGameOver = () => {
     const foundShipAlive = shipsPlaced.find((ship) => !ship.isSunk());
 
@@ -74,7 +76,9 @@ const Gameboard = () => {
     return true;
   };
 
-  return { placeShip, receiveAttack, isGameOver };
+  return {
+    placeShip, receiveAttack, isGameOver, getShips
+  };
 };
 
 export default Gameboard;
