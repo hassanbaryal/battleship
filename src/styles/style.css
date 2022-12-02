@@ -149,7 +149,7 @@ main .player-setup {
   border: 1px solid var(--secondary-colour);
 }
 
-.player-setup .cell.ship-placed {
+.cell.ship-placed {
   background-color: var(--secondary-colour);
 }
 
