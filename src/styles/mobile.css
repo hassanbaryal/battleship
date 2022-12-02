@@ -93,7 +93,7 @@
 
   /* ONE PLAYER GAME */
 
-  .one-player-game-container {
+  .main-game-container {
     height: 100%;
     width: 100%;
   
@@ -105,7 +105,7 @@
     height: 4rem;
   }
 
-  .one-player-game-container .game-container {
+  .main-game-container .game-container {
     flex-grow: 1;
     width: 100%;
 

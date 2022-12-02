@@ -168,7 +168,7 @@ main .player-setup {
 
 /* ONE PLAYER GAME */
 
-.one-player-game-container {
+.main-game-container {
   height: 100%;
   width: 100%;
 
@@ -182,6 +182,6 @@ main .player-setup {
   text-align: center;
 }
 
-.one-player-game-container .game-container {
+.main-game-container .game-container {
   display: flex;
 }
