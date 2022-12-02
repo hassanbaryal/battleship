@@ -77,7 +77,7 @@ const Gameboard = () => {
   };
 
   return {
-    placeShip, receiveAttack, isGameOver, getShips
+    placeShip, receiveAttack, isGameOver, getShips,
   };
 };
 
