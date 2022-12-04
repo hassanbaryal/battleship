@@ -1,5 +1,11 @@
 import { removeMainContent, elementFromHtml } from './domFunctions';
+import buildEndGamePage from './endGame';
 import { map } from './map';
+
+const endGame = (winner, loser, winnerMap, loserMap) => {
+  removeMainContent();
+  buildEndGamePage(winner, loser, winnerMap, loserMap);
+};
 
 const switchMaps = (maps) => {
   // Remove present maps
@@ -24,7 +30,7 @@ const updateGameMsg = (player, result) => {
 
 const toggleEnemyMap = () => document.querySelector('.board-container.enemy-waters').classList.toggle('disabled');
 
-const nextTurn = (players, maps, result) => {
+const processTurn = (players, maps, result) => {
   toggleEnemyMap();
   // Update modal message
   const modal = document.querySelector('.modal-popup');
@@ -67,17 +73,22 @@ const addFunctionality = (page, numPlayers, players, maps) => {
     // Check if game is over (check isGameOver on map that was hit, players[1])
     // If game is over, end game, show both visible maps, add btn to reset to startup page
     // call end game to create end game page/module
-    if (isGameOver(players[1])) console.log('PLAYER ONE WON');
+    if (isGameOver(players[1])) {
+      endGame(players[0], players[1], maps[0], maps[1]);
+      return;
+    }
 
     if (numPlayers === 1) {
-      // (if player and computer, make computer go)
+      // Computers turn
       const [computerResult, coords] = computerTurn(players);
       updateMaps(coords, computerResult, maps[0]);
-      // check if game is over (has computer won)
-      if (isGameOver(players[0])) console.log('COMPUTER WONN');
+      // Check if computer has won
+      if (isGameOver(players[0])) {
+        endGame(players[1], players[0], maps[1], maps[0]);
+      }
     } else {
-      // Update turn (if two players switch players and map array)
-      nextTurn(players, maps, result);
+      // Process and update turns (switch maps)
+      processTurn(players, maps, result);
       // eslint-disable-next-line no-param-reassign
       players = [players[1], players[0]];
       // eslint-disable-next-line no-param-reassign
