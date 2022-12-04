@@ -1,5 +1,6 @@
 import { createMap } from './map';
 import { removeMainContent, elementFromHtml } from './domFunctions';
+// eslint-disable-next-line import/no-cycle
 import buildStartGamePage from './startGame';
 import checkPlayerSetupValidity from './playerSetupValidation';
 import Ship from './Ship';
@@ -172,7 +173,7 @@ const buildPlayerSetupPage = (numPlayers = 1, players = []) => {
     </form>
   `);
 
-  const [board, cells] = createMap();
+  const [board] = createMap();
   page.querySelector('.orientation-selector').after(board);
 
   addFunctionality(page, numPlayers, players);

@@ -1,4 +1,5 @@
 import { removeMainContent, elementFromHtml } from './domFunctions';
+// eslint-disable-next-line import/no-cycle
 import buildEndGamePage from './endGame';
 import { map } from './map';
 
@@ -66,13 +67,10 @@ const addFunctionality = (page, numPlayers, players, maps) => {
     const result = players[0].attack([x, y], players[1].getBoard());
     // if attack not valid (i.e. clicking an already clicked cell)
     if (!result) return;
-    // Attack successful (hit or miss), now compute that.
-    // Update enemy map (visible map)
+    // Update map
     updateMaps([x, y], result, maps[1]);
 
-    // Check if game is over (check isGameOver on map that was hit, players[1])
-    // If game is over, end game, show both visible maps, add btn to reset to startup page
-    // call end game to create end game page/module
+    // Check if game is over
     if (isGameOver(players[1])) {
       endGame(players[0], players[1], maps[0], maps[1]);
       return;
@@ -99,9 +97,6 @@ const addFunctionality = (page, numPlayers, players, maps) => {
   const modal = document.querySelector('.modal-popup');
   modal.querySelector('.modal-btn').addEventListener('click', () => modal.classList.toggle('invisible'));
 };
-
-// const addMapsToDOM = (page, maps) => {
-// };
 
 const createMaps = (players) => [map(players[0]), map(players[1])];
 

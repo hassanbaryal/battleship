@@ -1,4 +1,5 @@
 import { removeMainContent, elementFromHtml } from './domFunctions';
+// eslint-disable-next-line import/no-cycle
 import buildStartPage from './startupPage';
 
 const addFunctionality = (page) => {
