@@ -27,7 +27,7 @@ const Computer = (myBoard, ships) => {
       while (!placed) {
         // eslint-disable-next-line no-use-before-define
         const randomCoord = getRandomCoords();
-        const orientation = orientations[Math.floor(Math.random * 2)];
+        const orientation = orientations[Math.floor(Math.random() * 2)];
         // If ship place successful, update ship coords and orientation
         // exit while loop to move onto next ship
         if (board.placeShip(ships[i], randomCoord, orientation)) {
