@@ -17,6 +17,12 @@
 
   main {
     display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  main .num-players-container {
+    display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
