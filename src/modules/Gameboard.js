@@ -57,7 +57,7 @@ const Gameboard = () => {
     const [x, y] = coords;
     // if cell has already been shot at
     for (let i = 0; i < allShotCells.length; i += 1) {
-      if (allShotCells[i].includes(x) && allShotCells[i].includes(y)) return false;
+      if (allShotCells[i][0] === x && allShotCells[i][1] === y) return false;
     }
     allShotCells.push(coords);
     if (map[y][x] === null) {
