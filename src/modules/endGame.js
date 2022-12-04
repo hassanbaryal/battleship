@@ -1,4 +1,13 @@
 import { removeMainContent, elementFromHtml } from './domFunctions';
+import buildStartPage from './startupPage';
+
+const addFunctionality = (page) => {
+  const restartBtn = page.querySelector('.restart-btn');
+  restartBtn.addEventListener('click', () => {
+    removeMainContent();
+    buildStartPage();
+  });
+};
 
 const buildEndGamePage = (winner, loser, winnerMap, loserMap) => {
   const page = elementFromHtml(`
@@ -21,6 +30,8 @@ const buildEndGamePage = (winner, loser, winnerMap, loserMap) => {
 
   playerOneSection.appendChild(winnerMap.getVisibleMap());
   playerTwoSection.appendChild(loserMap.getVisibleMap());
+
+  addFunctionality(page);
 
   document.querySelector('main').appendChild(page);
 };
