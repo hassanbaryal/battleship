@@ -137,7 +137,19 @@
     height: 70vw;
   }
 
-  .deactivate {
-    pointer-events: none;
+  /* END GAME */
+  .end-game-container {
+    justify-content: start;
+    justify-content: space-around;
   }
+    
+  .boards-container {
+   flex-flow: column;
+   width: 50%;
+  }
+
+  /* .player-one .board,
+  .player-two .board {
+    
+  } */
 }
