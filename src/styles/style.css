@@ -6,6 +6,7 @@
   --font-colour: #333333;
   --gray: #d1d5db;
   --red: #f87171;
+  --blue: #22d3ee;
   --green: #4ade80;
   --yellow: #facc15;
 }
@@ -166,7 +167,7 @@ main .player-setup {
   100% { transform: translateX(0) }
 }
 
-/* ONE PLAYER GAME */
+/* START GAME */
 
 .main-game-container {
   height: 100%;
@@ -184,4 +185,16 @@ main .player-setup {
 
 .main-game-container .game-container {
   display: flex;
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.cell.hit {
+  background-color: var(--red);
+}
+
+.cell.miss {
+  background-color: var(--blue);
 }
