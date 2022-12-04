@@ -24,7 +24,7 @@ const checkPlayerSetupValidity = (form, shipsArray) => {
     }
   } else {
     // say that yuo have to input a name
-    showErrorMsg(form, 'Name Missing!');
+    showErrorMsg(form, 'Name must be 1-10 characters!');
     return false;
   }
 
