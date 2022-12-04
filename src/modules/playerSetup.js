@@ -150,7 +150,7 @@ const buildPlayerSetupPage = (numPlayers = 1, players = []) => {
   const page = elementFromHtml(`
     <form class="player-setup">
         <div class="setup-msg">Player ${playerText} Setup</div>
-        <input type="text" minlength="1" id="name" placeholder="Enter your name, captain" required>
+        <input type="text" minlength="1" maxlength="10" id="name" placeholder="Enter your name, captain" required>
 
 
         <div class="setup-player-ships">
