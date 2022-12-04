@@ -48,7 +48,7 @@ const Computer = (myBoard, ships) => {
     while (true) {
       const coords = getRandomCoords();
       const returnValue = enemyBoard.receiveAttack(coords);
-      if (returnValue) return returnValue;
+      if (returnValue) return [returnValue, coords];
     }
   };
 
