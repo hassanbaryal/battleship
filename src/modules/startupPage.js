@@ -1,4 +1,5 @@
 import { removeMainContent, elementFromHtml } from './domFunctions';
+// eslint-disable-next-line import/no-cycle
 import buildPlayerSetupPage from './playerSetup';
 
 const addFunctionality = (page) => {
@@ -15,8 +16,10 @@ const addFunctionality = (page) => {
 
 const buildStartPage = () => {
   const page = elementFromHtml(`
-    <button type="button" id="select-one-player">1 Player</button>
-    <button type="button" id="select-two-player">2 Player</button>
+    <div class="num-players-container">
+      <button type="button" id="select-one-player">1 Player</button>
+      <button type="button" id="select-two-player">2 Player</button>
+    </div>
   `);
 
   addFunctionality(page);
