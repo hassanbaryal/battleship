@@ -1,6 +1,48 @@
 import { removeMainContent, elementFromHtml } from './domFunctions';
 import { map } from './map';
 
+const switchMaps = (maps) => {
+  // Remove present maps
+  maps[0].getVisibleMap().remove();
+  maps[1].getHiddenMap().remove();
+  const friendlyWatersDom = document.querySelector('.friendly-waters');
+  const enemyWatersDom = document.querySelector('.enemy-waters');
+  // Append new maps
+  friendlyWatersDom.appendChild(maps[1].getVisibleMap());
+  enemyWatersDom.appendChild(maps[0].getHiddenMap());
+};
+
+const updateGameMsg = (player, result) => {
+  const msg = document.querySelector('.game-update-msg');
+  msg.textContent = `It's a ${result}! Processing next turn in a moment..`;
+
+  setTimeout(() => {
+    if (result === 'hit') msg.textContent = `Captain ${player.getName()}, we've been hit! Arrr!`;
+    else msg.textContent = `Captain ${player.getName()}, we've dodged a cannon ball! Ahoy!`;
+  }, 4000);
+};
+
+const toggleEnemyMap = () => document.querySelector('.board-container.enemy-waters').classList.toggle('disabled');
+
+const nextTurn = (players, maps, result) => {
+  toggleEnemyMap();
+  // Update modal message
+  const modal = document.querySelector('.modal-popup');
+  const modalMsg = modal.querySelector('.modal-msg');
+  modalMsg.textContent = `Please pass the device to your mortal enemy, Captain ${players[1].getName()}!`;
+  // Update game message to display results and start countdown
+  updateGameMsg(players[1], result);
+  // Toggle modal
+  setTimeout(() => {
+    modal.classList.toggle('invisible');
+  }, 3000);
+  // Switch maps, enable enemy map
+  setTimeout(() => {
+    switchMaps(maps);
+    toggleEnemyMap();
+  }, 3500);
+};
+
 const isGameOver = (player) => player.getBoard().isGameOver();
 
 const computerTurn = (players) => players[1].attack(players[0].getBoard());
@@ -35,11 +77,16 @@ const addFunctionality = (page, numPlayers, players, maps) => {
       if (isGameOver(players[0])) console.log('COMPUTER WONN');
     } else {
       // Update turn (if two players switch players and map array)
-
-      //
+      nextTurn(players, maps, result);
+      // eslint-disable-next-line no-param-reassign
+      players = [players[1], players[0]];
+      // eslint-disable-next-line no-param-reassign
+      maps = [maps[1], maps[0]];
     }
-    
   });
+
+  const modal = document.querySelector('.modal-popup');
+  modal.querySelector('.modal-btn').addEventListener('click', () => modal.classList.toggle('invisible'));
 };
 
 // const addMapsToDOM = (page, maps) => {
