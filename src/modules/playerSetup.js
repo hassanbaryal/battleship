@@ -79,6 +79,7 @@ const completeSetup = (gameBoard, form, numPlayers, players) => {
     buildPlayerSetupPage(numPlayers, players);
   } else if (numPlayers === 2 && players.length === 2) {
     // call function to start 2 player vs player game
+    buildStartGamePage(numPlayers, players);
   } else {
     // create computer. call function to start player vs computer game
     const newComputer = Computer(Gameboard(), createShips());
