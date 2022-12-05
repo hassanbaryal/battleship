@@ -1,8 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap');
 
-:root {
+:root.dark {
+  --secondary-colour: #f5f5dc;
+  --primary-colour: #171717;
+}
+
+:root.light {
   --primary-colour: #f5f5dc;
   --secondary-colour: #171717;
+}
+
+:root {
   --font-colour: #333333;
   --gray: #d1d5db;
   --red: #f87171;
@@ -297,7 +305,15 @@ main .player-setup {
   text-align: center;
 }
 
-/* .player-one .board,
-.player-two .board {
+/* TOGGLE THEME BUTTON */
 
-} */
+.toggle-theme-btn {
+  font-size: 1rem;
+  width: 10rem;
+}
+
+.toggle-theme-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
