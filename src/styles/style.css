@@ -53,6 +53,7 @@ button {
 /* HEADER */
 
 header {
+  height: 25%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,6 +67,17 @@ header .page-title {
 
 main {
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main .num-players-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
 }
 
 /* MODAL */
@@ -90,6 +102,8 @@ main {
 }
 
 .modal {
+  height: 70vh;
+  width: 70vw;
   background-color: var(--primary-colour);
   border: 2px solid var(--secondary-colour);
   border-radius: 15px;
@@ -98,9 +112,11 @@ main {
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  gap: 3rem;
 }
 
 .modal .modal-msg {
+  font-size: 3rem;
   text-align: center;
 }
 
@@ -112,8 +128,9 @@ main .player-setup {
 
   display: flex;
   flex-flow: column;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
+  gap: 3rem;
 }
 
 .setup-msg {
@@ -132,6 +149,27 @@ main .player-setup {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.player-setup .setup-player-ships {
+  display: flex;
+  flex-flow: column;
+  gap: 1rem;
+}
+
+.player-setup .selector {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selector button {
+  width: 6rem;
+}
+
+.setup-player-ships .board {
+  height: clamp(320px, 35vw, 400px);
+  aspect-ratio: 1/1;
 }
 
 .current-ship-selected.placed {
@@ -174,17 +212,40 @@ main .player-setup {
   width: 100%;
 
   display: flex;
-  justify-content: center;
+  flex-flow: column;
+  justify-content: flex-start;
   align-items: center;
+  gap: 5rem;
 }
 
 .game-update-msg {
-  font-size: 1.5rem;
+  font-size: 2rem;
   text-align: center;
 }
 
 .main-game-container .game-container {
   display: flex;
+  align-items: center;
+  gap: 5rem;
+}
+
+.board-container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.board-container.friendly-waters .board {
+  height: 20vw;
+}
+
+.board-title.enemy-waters {
+  font-size: 1.5rem;
+}
+
+.board-container.enemy-waters .board {
+  height: 30vw;
 }
 
 .disabled {
@@ -207,23 +268,25 @@ main .player-setup {
 
   display: flex;
   flex-flow: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 1rem;
 }
 
 .end-game-msg {
-  font-size: 1.75rem;
+  font-size: 2rem;
   text-align: center;
 }
 
 .boards-container {
   display: flex;
-  gap: 1rem;
+  align-items: center;
+  gap: 3rem;
 }
 
 .player-one,
 .player-two {
+  width: 30vw;
   display: flex;
   flex-flow: column;
   gap: 1rem;
